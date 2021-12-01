@@ -77,7 +77,6 @@ int main()
 	PlaySound(TEXT("Kid A Mnesia.wav"), NULL, SND_LOOP | SND_ASYNC);
 
 	std::cout << "Bienvenido a mi juego.\n\nTendrás que tomar decisiones presionando los números que aparecerán en la pantalla y confirmando con la tecla ENTER.\n\nEspero que lo disfrutes.\n\nPresiona ENTER para comenzar\n";
-	std::cin.get();
 	std::cin.clear();
 	std::cin.ignore(9223372036854775807, '\n'); //También lo usamos aquí para limpiar el buffer antes de empezar con el juego.
 
