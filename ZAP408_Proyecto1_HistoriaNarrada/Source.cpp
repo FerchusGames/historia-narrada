@@ -4,6 +4,7 @@
 #include <locale> //Para poner el idioma en español
 #include <stdlib.h> //Para limpiar la consola
 #include <dialogos.h> //Aqu[i se encuentran todos los diálogos
+#include <limits> // Permitirá validar los valores // No lo terminé usando, pero usualmente necesitas incluirlo para std::cin.ignore();
 
 	void Dialogo(std::string str) // Muestra los dialogos letra por letra con la voz de sans
 	{
@@ -37,6 +38,8 @@
 
 	int UnoDos() //Le pide al usuario introducir uno o dos
 	{
+		// Boleano para comprobar que el valor sea válido
+
 		int x = 0;
 		do {
 			std::cout << "\nIntroduce tu respuesta: ";
@@ -44,6 +47,8 @@
 			if (x != 1 && x != 2)
 			{
 				std::cout << "Número inválido. Intenta otra vez." << std::endl;
+				std::cin.clear();
+				std::cin.ignore(9223372036854775807, '\n'); //Por alguna razón no encontró "std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');" Válido, entonces busqué el valor de "std::numeric_limits<std::streamsize>::max()", que me dió "9223372036854775807", así que lo remplacé con eso.
 			}
 		} while (x != 1 && x != 2);
 		return x;
@@ -73,6 +78,8 @@ int main()
 
 	std::cout << "Bienvenido a mi juego.\n\nTendrás que tomar decisiones presionando los números que aparecerán en la pantalla y confirmando con la tecla ENTER.\n\nEspero que lo disfrutes.\n\nPresiona ENTER para comenzar\n";
 	std::cin.get();
+	std::cin.clear();
+	std::cin.ignore(9223372036854775807, '\n'); //También lo usamos aquí para limpiar el buffer antes de empezar con el juego.
 
 	Dialogo(intro);
 	std::cout << "1. Contestas el celular." << std::endl;
